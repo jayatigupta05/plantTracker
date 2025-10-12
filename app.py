@@ -3,14 +3,16 @@ from datetime import datetime
 import requests
 import sqlite3
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
+PLANTNET_API_KEY = os.getenv("PLANTNET_API_KEY")
+PLANTNET_PROJECT = os.getenv("PLANTNET_PROJECT")
+
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Replace this with your actual PlantNet API key and project name
-PLANTNET_API_KEY = '2b10OwdMZvX4OPtFTAQN5FEY8O'
-PLANTNET_PROJECT = 'all'  # or 'flora-india', etc.
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
@@ -152,4 +154,5 @@ def complete_task(task_id):
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)
